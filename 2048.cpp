@@ -167,7 +167,7 @@ void secondary_menu(int **table, int row, int col, bool loaded)
 void play(bool loaded)
 {
     
-    int row, col, x1, x2, y1, y2;
+    int row, col, x1, x2, y1, y2, undo_score;
     bool first_try = true;
     char dir;
     sum = 0;
@@ -268,10 +268,12 @@ void play(bool loaded)
         if (dir == 'u')
         {
             swapper(table, undo, row, col);
+            sum = undo_score;
         }
         else
         {
             swapper(undo, table, row, col);
+            undo_score = sum;
         }
         
         play_move(table, row, col, dir);
